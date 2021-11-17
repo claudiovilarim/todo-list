@@ -37,11 +37,21 @@
                     </div>
                     <small class="fw-light">EMPITY!</small>
                 <?php } while($todo = $todos->fetch(PDO::FETCH_ASSOC)) {?>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="" id=""> 
-                        <label class="form-check-label" for="">This is blablbla</label>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="" id=""> 
+                                <label class="form-check-label" for="">
+                                    <?php echo $todo['title'] ?>
+                                </label>
+                            </div>
+                            <small class="fw-light">created at  <?php echo $todo['date_time'] ?> </small>
+                        </div>
+                        <div class="col-md-2">
+                            <span id="<?= $todo['id']; ?>">x</span>
+                        </div>
                     </div>
-                    <small class="fw-light">created at 16/11/2021</small>
+                    <br>
                 <?php } ?>
             </div>
         </div>
