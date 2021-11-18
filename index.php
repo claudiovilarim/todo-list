@@ -18,10 +18,13 @@
 
     <div class="container " style="max-width: 480px;">
         <div class="card p-3 m-3" >
-            <div>
-                <input class="form-control" type="text" placeholder="Preencha aqui">
-            </div>
-            <button class="btn btn-primary mt-2">Add</button>
+            <form action="./app/add.php" method="POST" class="d-grid">
+                <div>
+                    <input name="title" class="form-control" type="text" placeholder="Preencha aqui" autocomplete="off" required>
+                </div>
+                <button class="btn btn-primary mt-2 btn-block">Add</button>
+                <?php if(isset($_GET['mess']) && $_GET['mess'] == 'enviado') {echo 'Item gravado!';} ?>
+            </form>
         </div>
 
         <?php
@@ -40,11 +43,19 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="" id=""> 
-                                <label class="form-check-label" for="">
-                                    <?php echo $todo['title'] ?>
-                                </label>
+                                <?php if($todo['checked']){ ?>
+                                    <input class="form-check-input" type="checkbox" name="" id="" checked> 
+                                    <label class="form-check-label" for="">
+                                        <s class="text-secondary"> <?php echo $todo['title'] ?> </s> 
+                                    </label>
+                                <?php } else{ ?>
+                                    <input class="form-check-input" type="checkbox" name="" id=""> 
+                                    <label class="form-check-label" for="">
+                                        <?php echo $todo['title'] ?>
+                                    </label>
+                                <?php } ?>
                             </div>
+                                
                             <small class="fw-light">created at  <?php echo $todo['date_time'] ?> </small>
                         </div>
                         <div class="col-md-2">
